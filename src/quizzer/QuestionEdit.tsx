@@ -35,11 +35,11 @@ export const QuestionEdit = ({
         });
     };
 
-    const switchMulti = () => {
+    const switchMulti = (e: React.ChangeEvent<HTMLSelectElement>) => {
         b(0);
         editQuestion(question.id, {
             ...question,
-            type: "multiple_choice_question",
+            type: e.target.value as QuestionType,
             expected: "Example Answer",
             options: Array(3).fill("Example Answer")
         });
@@ -243,6 +243,7 @@ export const QuestionEdit = ({
                                 ...question,
                                 published: e.target.checked
                             });
+                            console.log(e.target.checked);
                         }}
                     ></Form.Check>
                     <Button
