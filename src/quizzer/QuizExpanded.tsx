@@ -102,7 +102,7 @@ export const QuizExpanded = ({
                     question={q}
                     submitted={submitArr[index]}
                     handleSubmit={handleQuestionSubmit}
-                    addPoints={addPoints}
+                    addPoints={() => addPoints(q.points)}
                     editQuestionSub={editQuestionSub}
                 ></QuizQuestion>
             ))}
