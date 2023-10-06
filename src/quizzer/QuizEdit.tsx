@@ -31,7 +31,7 @@ export const QuizEdit = ({
     const removeQuestion = (questionId: number) => {
         setNewQuiz({
             ...newQuiz,
-            questionList: newQuiz.questionList.filter((question: Question): boolean => question.id === questionId)
+            questionList: newQuiz.questionList.filter((question: Question): boolean => question.id !== questionId)
         });
     };
 
