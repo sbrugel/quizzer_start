@@ -14,10 +14,10 @@ export const QuizEdit = ({
     resetView
 }: {
     quiz: Quiz;
-    editQuiz: (qId: number, newQuiz: Quiz) => void; 
+    editQuiz: (Id: number, newQuiz: Quiz) => void;
     deleteQuiz: (qId: number) => void;
     switchEdit: () => void;
-    resetView: () => void; // FIX: prop typings
+    resetView: () => void;
 }) => {
     const [newQuiz, setNewQuiz] = useState<Quiz>({ ...quiz });
 
@@ -85,7 +85,7 @@ export const QuizEdit = ({
                             ) => {
                                 setNewQuiz({
                                     ...newQuiz,
-                                    published: 
+                                    published 
                                 });
                             }}
                         ></Form.Check>
