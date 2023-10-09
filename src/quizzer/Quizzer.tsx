@@ -24,22 +24,22 @@ export const Quizzer = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>(QUIZZES);
     const [showAddModal, setShowAddModal] = useState(false);
 
-    function editQuiz(qId: number, newQuiz: Quiz) {
+    function editQuiz(qId: number, newQuiz: Quiz): void {
         setQuizzes(
             quizzes.map((q: Quiz): Quiz => (q.id === qId ? newQuiz : q))
         );
     }
 
-    function addQuiz(title: string, body: string) {
-        setQuizzes([...quizzes, newQuiz]);
+    function addQuiz(title: string, body: string): void {
+        setQuizzes([...quizzes, { id: 999, title, body, published: false, questionList: [] }]); // replaced "newQuiz" with a quiz declaration
     }
 
-    function deleteQuiz(qId: number) {
+    function deleteQuiz(qId: number): void {
         setQuizzes(quizzes.filter((q: Quiz): boolean => qId !== q.id));
     }
 
-    const handleShowModal = () => setShowAddModal(true);
-    const handleCloseModal = () => setShowAddModal(false);
+    const handleShowModal = (): void => setShowAddModal(true);
+    const handleCloseModal = (): void => setShowAddModal(false);
 
     return (
         <div className="quizzer">

@@ -10,14 +10,15 @@ export const QuizList = ({
     editQuiz,
     deleteQuiz,
     showModal
-}: {}) => {
+}: { quizzes: Quiz[]; editQuiz: (qId: number, newQuiz: Quiz) => void; deleteQuiz: (qId: number) => void; showModal: () => void; }) => {
+    // FIX above - add prop types
     const [displayId, setDisplayId] = useState<null | number>(null);
 
-    const handleQuizView = (id: number) => {
+    const handleQuizView = (id: number): void => {
         setDisplayId(id);
     };
 
-    const resetQuizView = () => {
+    const resetQuizView = (): void => {
         setDisplayId(null);
     };
 
@@ -25,7 +26,7 @@ export const QuizList = ({
         <div className="quiz_list">
             {!displayId && (
                 <>
-                    {quizzes.map((quiz: Quiz) => (
+                    {quizzes.map((quiz: Quiz): JSX.Element => (
                         <QuizCard
                             key={quiz.id}
                             quiz={quiz}
@@ -37,7 +38,7 @@ export const QuizList = ({
                     </Button>
                 </>
             )}
-            {quizzes.map((quiz: Quiz) => {
+            {quizzes.map((quiz: Quiz): JSX.Element | null => {
                 if (displayId === quiz.id) {
                     return (
                         <QuizView
@@ -49,6 +50,7 @@ export const QuizList = ({
                         ></QuizView>
                     );
                 }
+                return null;
             })}
         </div>
     );

@@ -11,7 +11,12 @@ export const QuizExpanded = ({
     editQuiz,
     resetView,
     switchEdit
-}: {}) => {
+}: {
+    quiz: Quiz;
+    editQuiz: (qId: number, newQuiz: Quiz) => void; 
+    resetView: () => void;
+    switchEdit: () => void; // FIX: prop typings
+}) => {
     const filteredQuestions = quiz.questionList.filter(
         (q: Question): boolean =>
             (quiz.published && q.published) || !quiz.published
@@ -22,22 +27,22 @@ export const QuizExpanded = ({
         new Array(filteredQuestions.length)
     );
 
-    const handleQuestionSubmit = (index: number) => {
+    const handleQuestionSubmit = (index: number): void => {
         const newSubmitArr = [...submitArr];
         newSubmitArr.splice(index, 3, true);
         setSubmitArr(newSubmitArr);
     };
 
     const totalPoints = filteredQuestions.reduce(
-        (prev: number, q: Question): number => prev + q.p,
+        (prev: number, q: Question): number => prev + q.points,
         0
     );
 
-    const addPoints = (p: number) => {
+    const addPoints = (p: number): void => {
         sp((prevCount) => prevCount + p);
     };
 
-    const reset = () => {
+    const reset = (): void => {
         setSubmitArr(new Array(filteredQuestions.length));
         editQuiz(quiz.id, {
             ...quiz,
@@ -49,11 +54,13 @@ export const QuizExpanded = ({
         sp(0);
     };
 
-    const editQuestionSub = (questionId: number, sub: string) => {
+    const editQuestionSub = (questionId: number, sub: string): void => {
         editQuiz(quiz.id, {
             ...quiz,
-            questionList: quiz.questionList.map(
-            )
+            questionList: quiz.questionList.map((ques: Question): Question => ({
+                ...ques,
+                submission: ques.id === questionId ? sub : ques.submission
+            }))
         });
     };
 
@@ -92,10 +99,10 @@ export const QuizExpanded = ({
                 <QuizQuestion
                     key={quiz.id + "|" + q.id}
                     index={index}
-                    question="q"
+                    question={q}
                     submitted={submitArr[index]}
                     handleSubmit={handleQuestionSubmit}
-                    addPoints={addPoints}
+                    addPoints={() => addPoints(q.points)}
                     editQuestionSub={editQuestionSub}
                 ></QuizQuestion>
             ))}

@@ -12,14 +12,21 @@ export const QuizQuestion = ({
     handleSubmit,
     addPoints,
     editQuestionSub
-}: {}) => {
-    const handleClick = (e: ChangeEvent) => {
+}: {
+    index: number;
+    question: Question;
+    submitted: boolean;
+    handleSubmit: (index: number) => void;
+    addPoints: (p: number) => void;
+    editQuestionSub: (questionId: number, sub: string) => void;
+}) => {
+    const handleClick = (e: ChangeEvent): void => {
         if (!submitted) {
             editQuestionSub(question.id, e.target.value);
         }
     };
 
-    const handleSubmitClick = () => {
+    const handleSubmitClick = (): void => {
         handleSubmit(index);
         if (question.submission === question.expected) {
             addPoints(5);
@@ -37,7 +44,7 @@ export const QuizQuestion = ({
                     <h4>
                         {question.points} pt{question.points !== 1 ? "s" : ""}
                     </h4>
-                </div>f
+                </div>
                 <div className="answer_box">
                     {question.type === "short_answer_question" && (
                         <Form.Group controlId="formShortAnswerBox">
@@ -51,9 +58,9 @@ export const QuizQuestion = ({
                     {question.type === "multiple_choice_question" && (
                         <div>
                             {question.options.map(
-                                (option: string, i: number) => (
+                                (option: string, i: number): JSX.Element => (
                                     <Form.Check
-                                        type=""
+                                        type="radio"
                                         name={"questionChoice" + index}
                                         key={option + " | " + i}
                                         label={option}
