@@ -21,25 +21,25 @@ export const QuizEdit = ({
 }) => {
     const [newQuiz, setNewQuiz] = useState<Quiz>({ ...quiz });
 
-    const editQuestion = (questionId: number, newQuestion: Question) => {
+    const editQuestion = (questionId: number, newQuestion: Question): void => {
         setNewQuiz({
             ...newQuiz,
             questionList: newQuiz.questionList.map((q: Question): Question => q.id === questionId ? newQuestion : q )
         });
     };
 
-    const removeQuestion = (questionId: number) => {
+    const removeQuestion = (questionId: number): void => {
         setNewQuiz({
             ...newQuiz,
             questionList: newQuiz.questionList.filter((question: Question): boolean => question.id !== questionId)
         });
     };
 
-    const saveChanges = () => {
+    const saveChanges = (): void => {
         editQuiz(quiz.id, { ...newQuiz });
     };
 
-    const swapQuestion = (idx1: number, idx2: number) => {
+    const swapQuestion = (idx1: number, idx2: number): void => {
         setNewQuiz({
             ...newQuiz,
             questionList: newQuiz.questionList.map(

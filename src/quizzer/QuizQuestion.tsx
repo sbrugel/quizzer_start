@@ -20,13 +20,13 @@ export const QuizQuestion = ({
     addPoints: (p: number) => void;
     editQuestionSub: (questionId: number, sub: string) => void;
 }) => {
-    const handleClick = (e: ChangeEvent) => {
+    const handleClick = (e: ChangeEvent): void => {
         if (!submitted) {
             editQuestionSub(question.id, e.target.value);
         }
     };
 
-    const handleSubmitClick = () => {
+    const handleSubmitClick = (): void => {
         handleSubmit(index);
         if (question.submission === question.expected) {
             addPoints(5);
@@ -58,7 +58,7 @@ export const QuizQuestion = ({
                     {question.type === "multiple_choice_question" && (
                         <div>
                             {question.options.map(
-                                (option: string, i: number) => (
+                                (option: string, i: number): JSX.Element => (
                                     <Form.Check
                                         type="radio"
                                         name={"questionChoice" + index}

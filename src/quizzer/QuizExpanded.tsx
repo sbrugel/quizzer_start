@@ -27,7 +27,7 @@ export const QuizExpanded = ({
         new Array(filteredQuestions.length)
     );
 
-    const handleQuestionSubmit = (index: number) => {
+    const handleQuestionSubmit = (index: number): void => {
         const newSubmitArr = [...submitArr];
         newSubmitArr.splice(index, 3, true);
         setSubmitArr(newSubmitArr);
@@ -38,11 +38,11 @@ export const QuizExpanded = ({
         0
     );
 
-    const addPoints = (p: number) => {
+    const addPoints = (p: number): void => {
         sp((prevCount) => prevCount + p);
     };
 
-    const reset = () => {
+    const reset = (): void => {
         setSubmitArr(new Array(filteredQuestions.length));
         editQuiz(quiz.id, {
             ...quiz,
@@ -54,7 +54,7 @@ export const QuizExpanded = ({
         sp(0);
     };
 
-    const editQuestionSub = (questionId: number, sub: string) => {
+    const editQuestionSub = (questionId: number, sub: string): void => {
         editQuiz(quiz.id, {
             ...quiz,
             questionList: quiz.questionList.map((ques: Question): Question => ({

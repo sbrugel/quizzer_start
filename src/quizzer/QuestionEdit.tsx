@@ -23,7 +23,7 @@ export const QuestionEdit = ({
         question.options.findIndex((s: string) => question.expected === s)
     );
 
-    const handleNumOptions = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleNumOptions = (e: React.ChangeEvent<HTMLInputElement>): void => {
         b(0);
         const newNum =
             parseInt(e.target.value) < 1 ? 1 : parseInt(e.target.value);
@@ -35,7 +35,7 @@ export const QuestionEdit = ({
         });
     };
 
-    const switchMulti = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const switchMulti = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         b(0);
         editQuestion(question.id, {
             ...question,
@@ -45,7 +45,7 @@ export const QuestionEdit = ({
         });
     };
 
-    const handlePoints = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePoints = (e: React.ChangeEvent<HTMLInputElement>): void => {
     	question.points = parseInt(e.target.value)
         editQuestion(question.id, question);
     };
@@ -53,7 +53,7 @@ export const QuestionEdit = ({
     const handleChoiceChange = (
         e: React.ChangeEvent<HTMLInputElement>,
         i: number
-    ) => {
+    ): void => {
         const newOptions = [...question.options];
         newOptions.splice(i, 1, e.target.value);
         editQuestion(question.id, {
@@ -63,7 +63,7 @@ export const QuestionEdit = ({
         });
     };
 
-    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const idx = parseInt(e.target.value);
         b(idx);
         editQuestion(question.id, {
