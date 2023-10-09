@@ -11,3 +11,5 @@ I debugged this on another repository but was unable to get it to deploy. This i
 ## For grader:
 
 Make sure to run `npm i` at first, since node_modules is ignored by default.
+
+This repo didn't come with a prettier file so some stuff might not conform with the prettier standards for the other tasks repo.
